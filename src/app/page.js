@@ -38,7 +38,7 @@ export default function Home() {
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           {products.map((product) => (
             <Link
-              href={`/product/${product.id}`}
+              href={`/product/${encodeURIComponent(product.slug)}`}
               key={product.id}
               className="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
             >
@@ -48,6 +48,7 @@ export default function Home() {
                   src={product.thumbnail}
                   alt={product.name}
                   fill
+                  priority
                   className="object-cover rounded-t-xl sm:rounded-xl"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
@@ -56,17 +57,17 @@ export default function Home() {
               {/* Product Info */}
               <div className="px-3 pb-4 sm:px-4 sm:pb-5 md:px-5 md:pb-6 flex flex-col flex-1">
                 {/* Title */}
-                <h2 className="text-sm sm:text-base md:text-lg font-medium mb-2 text-gray-800 line-clamp-2">
+                <h2 className="text-sm sm:text-base md:text-lg font-medium mb-4 text-gray-800 line-clamp-2">
                   {product.name}
                 </h2>
 
                 {/* Price */}
-                <div className="flex items-center space-x-2 mb-3">
-                  <span className="text-teal-600 font-semibold text-sm sm:text-base">
-                    BDT {product.discount_price}
-                  </span>
+                <div className="flex flex-col space-y-2 mb-3">
                   <span className="text-gray-400 line-through text-xs sm:text-sm">
                     BDT {product.regular_price}
+                  </span>
+                  <span className="text-teal-600 font-semibold text-sm sm:text-base">
+                    BDT {product.discount_price}
                   </span>
                 </div>
 

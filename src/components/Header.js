@@ -33,7 +33,7 @@ export default function Header() {
             <Image src={logo} alt="logo" priority width={24} height={24} />
             <Link href={"/"} className="font-onest text-xl lg:text-2xl font-bold">FALCON</Link>
           </div>
-          <div className="hidden sm:flex items-center gap-0">
+          <div className="hidden lg:flex items-center gap-0">
             <input
               type="text"
               placeholder="Search for anything...."
@@ -44,7 +44,7 @@ export default function Header() {
             </button>
           </div>
           <div className="flex space-x-4">
-            <button onClick={handleSearchClick} className="block sm:hidden">
+            <button onClick={handleSearchClick} className="block lg:hidden">
               <CiSearch className="text-lg lg:text-xl" />
             </button>
             <button>
@@ -67,9 +67,9 @@ export default function Header() {
           </div>
           <RiMenuLine
             onClick={toggleDropdown}
-            className="text-xl block md:hidden"
+            className="text-xl block lg:hidden"
           />
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <h1 className="font-onest font-normal text-sm text-[#0F172A]">
               Electronics
             </h1>
@@ -86,7 +86,7 @@ export default function Header() {
               Sports Gear
             </h1>
           </div>
-          <div className="hidden md:flex items-center space-x-5">
+          <div className="hidden lg:flex items-center space-x-5">
             <h1 className="font-onest font-normal text-sm text-[#0F172A] flex items-center gap-1">
               <BsBoxSeam />
               TRACK ORDER

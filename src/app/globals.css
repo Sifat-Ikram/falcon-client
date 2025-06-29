@@ -5,3 +5,15 @@
 .font-onest {
   font-family: "Onest", sans-serif;
 }
+
+.ribbon-notch {
+  clip-path: polygon(0% 0%, 100% 0%, 93% 50%, 100% 100%, 0% 100%);
+}
+
+.clip-left-parallelogram {
+  clip-path: polygon(50% 0%, 100% 0%, 55% 100%, 0% 100%);
+}
+.clip-right-parallelogram {
+  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
