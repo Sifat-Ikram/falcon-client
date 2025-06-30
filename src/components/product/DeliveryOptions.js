@@ -7,7 +7,7 @@ import logo from "../../../public/logos.png";
 
 export default function DeliveryOptions({ merchant }) {
   return (
-    <div className="w-[313px] space-y-4">
+    <div className="lg:w-[313px] space-y-4 flex flex-wrap sm:justify-evenly lg:flex-col">
       {/* Delivery Options */}
       <div className="border-[1px] border-[#E2E8F0] px-4 py-3 rounded-xl">
         <p className="text-lg font-medium font-onest text-[#475569] mb-2">
@@ -43,7 +43,7 @@ export default function DeliveryOptions({ merchant }) {
       </div>
 
       {/* Seller Info */}
-      <div className="border-[1px] border-[#E2E8F0] px-[15px] py-5 rounded-xl gap-[10px]">
+      <div className="border-[1px] border-[#E2E8F0] px-[15px] py-3 rounded-xl gap-[10px]">
         <div className="space-y-2 border-b-[1px] border-[#E2E8F0] pb-3">
           <p className="text-[12px] font-onest font-normal text-[#475569] mb-2">
             Sold by

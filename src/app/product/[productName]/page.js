@@ -56,7 +56,7 @@ export default function ProductPage() {
               <ProductInfo product={product} />
             </div>
             <Description product={product} />
-            <Specifications />
+            <Specifications product={product} />
           </div>
           <div className="">
             <DeliveryOptions merchant={product.merchant} />

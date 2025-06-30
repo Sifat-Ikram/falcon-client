@@ -2,7 +2,10 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import { IoShareSocialOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/slices/cartSlice";
 
 const demoVariants = [
   {
@@ -34,6 +37,8 @@ export default function ProductInfo({ product }) {
   const [selectedColor, setSelectedColor] = useState(variants[0]);
   const [selectedSize, setSelectedSize] = useState(selectedColor?.sizes?.[0]);
   const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useState([]);
+  const dispatch = useDispatch();
 
   const increase = () => setQuantity((q) => q + 1);
   const decrease = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
@@ -61,6 +66,61 @@ export default function ProductInfo({ product }) {
 
     return <div className="flex gap-1">{stars}</div>;
   }
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(storedCart);
+  }, []);
+
+  const handleAddToCart = () => {
+    if (!product?.id) return;
+
+    const newItem = {
+      id: product.id,
+      name: product.name,
+      image: Object.values(product.image || {})[0]?.url || null,
+      color: selectedColor.color_name,
+      size: selectedSize,
+      seller: product.merchant.shop_name,
+      quantity,
+      discount_price: product.product_detail?.discount_price,
+      regular_price: product.product_detail?.regular_price,
+    };
+
+    const isDuplicate = cart.some(
+      (item) =>
+        item.id === newItem.id &&
+        item.color === newItem.color &&
+        item.size === newItem.size
+    );
+
+    if (isDuplicate) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "warning",
+        title: `${product.name} is already in the cart`,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+      return;
+    }
+
+    const updatedCart = [...cart, newItem];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    dispatch(addToCart(newItem));
+
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      icon: "success",
+      title: `${product.name} added to the cart`,
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    });
+  };
 
   return (
     <div className="space-y-[26px] font-onest px-4">
@@ -194,7 +254,10 @@ export default function ProductInfo({ product }) {
             </button>
           </div>
         </div>
-        <button className="bg-[#00A788] text-white w-full text-base font-onest font-medium text-center py-[10px] rounded-sm">
+        <button
+          onClick={handleAddToCart}
+          className="bg-[#00A788] text-white w-full text-base font-onest font-medium text-center py-[10px] rounded-sm"
+        >
           Add to Cart
         </button>
       </div>

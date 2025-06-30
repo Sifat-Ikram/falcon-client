@@ -8,14 +8,22 @@ import CategoryDropdown from "./CategoryDropdown";
 import Image from "next/image";
 import logo from "../../public/logo.png";
 import house from "../../public/house.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiMenuLine } from "react-icons/ri";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { loadCartFromLocalStorage } from "../../redux/slices/cartSlice";
 
 export default function Header() {
   const { categories, loading, error } = useCategories();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
+
+  useEffect(() => {
+    dispatch(loadCartFromLocalStorage());
+  }, [dispatch]);
 
   const handleSearchClick = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -26,12 +34,17 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow font-onest">
+    <header className="bg-white shadow font-onest sticky top-0 z-50">
       <div className="w-full mx-auto bg-[#0F172A] text-white py-4">
         <div className="w-11/12 mx-auto flex justify-between items-center">
           <div className="relative flex items-center gap-2">
             <Image src={logo} alt="logo" priority width={24} height={24} />
-            <Link href={"/"} className="font-onest text-xl lg:text-2xl font-bold">FALCON</Link>
+            <Link
+              href={"/"}
+              className="font-onest text-xl lg:text-2xl font-bold"
+            >
+              FALCON
+            </Link>
           </div>
           <div className="hidden lg:flex items-center gap-0">
             <input
@@ -47,9 +60,12 @@ export default function Header() {
             <button onClick={handleSearchClick} className="block lg:hidden">
               <CiSearch className="text-lg lg:text-xl" />
             </button>
-            <button>
+            <Link href={"/cart"} className="relative">
               <IoCartOutline className="text-lg lg:text-xl" />
-            </button>
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            </Link>
             <button>
               <IoPersonOutline className="text-base lg:text-xl" />
             </button>
@@ -102,14 +118,30 @@ export default function Header() {
           </div>
           {showDropdown && (
             <div className="absolute z-50 top-full py-3 right-0 bg-white rounded-md shadow-lg text-gray-700 overflow-hidden flex flex-col">
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">Electronics</span>
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">Home Appliances</span>
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">Mother & Baby</span>
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">Automotive</span>
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">Sports Gear</span>
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">TRACK ORDER</span>
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">HELP CENTER</span>
-              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">SELL WITH US</span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                Electronics
+              </span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                Home Appliances
+              </span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                Mother & Baby
+              </span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                Automotive
+              </span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                Sports Gear
+              </span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                TRACK ORDER
+              </span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                HELP CENTER
+              </span>
+              <span className="text-base text-right font-onest cursor-pointer px-10 py-2 hover:bg-gray-200 text-[#0F172A]">
+                SELL WITH US
+              </span>
             </div>
           )}
         </div>

@@ -6,7 +6,7 @@ export default function Description({ product }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="w-full p-6 rounded-sm bg-white border border-blue-200">
+    <section className="w-full p-6 rounded-sm bg-white shadow">
       <h2 className="text-lg font-semibold mb-2">Description</h2>
 
       <div
