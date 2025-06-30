@@ -34,7 +34,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow font-onest sticky top-0 z-50">
+    <header className="bg-white shadow font-onest sticky top-0 z-40">
       <div className="w-full mx-auto bg-[#0F172A] text-white py-4">
         <div className="w-11/12 mx-auto flex justify-between items-center">
           <div className="relative flex items-center gap-2">
@@ -73,7 +73,7 @@ export default function Header() {
         </div>
       </div>
       <div className="w-full">
-        <div className="relative w-11/12 mx-auto flex justify-between items-center py-4">
+        <div className="relative w-11/12 mx-auto flex justify-between items-center">
           <div className="relative flex items-center gap-2">
             <CategoryDropdown
               categories={categories}
@@ -83,7 +83,7 @@ export default function Header() {
           </div>
           <RiMenuLine
             onClick={toggleDropdown}
-            className="text-xl block lg:hidden"
+            className="text-xl block lg:hidden py-4"
           />
           <div className="hidden lg:flex items-center space-x-8">
             <h1 className="font-onest font-normal text-sm text-[#0F172A]">

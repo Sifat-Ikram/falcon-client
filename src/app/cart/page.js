@@ -9,12 +9,17 @@ import { useEffect } from "react";
 export default function CartPage() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const selectedItems = useSelector((state) => state.cart.selected);
 
   useEffect(() => {
     dispatch(loadCartFromLocalStorage());
   }, [dispatch]);
 
-  const total = cartItems.reduce(
+  const selectedCartItems = cartItems.filter((item) =>
+    selectedItems.includes(item.id)
+  );
+
+  const total = selectedCartItems.reduce(
     (acc, item) => acc + item.discount_price * item.quantity,
     0
   );
@@ -33,11 +38,15 @@ export default function CartPage() {
             <li>My Cart</li>
           </ol>
         </div>
-        <div className=" grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="md:col-span-2">
-            <CartList items={cartItems} />
+            <CartList items={cartItems} selected={selectedItems} />
           </div>
-          <OrderSummary itemCount={cartItems.length} total={total} />
+          <OrderSummary
+            itemCount={selectedCartItems.length}
+            total={total}
+            selectedItems={selectedCartItems}
+          />
         </div>
       </div>
     </div>
