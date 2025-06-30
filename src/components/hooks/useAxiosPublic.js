@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://157.230.240.97:9999/api/v1",
+  baseURL: "/api/proxy",
   withCredentials: true,
 });
 

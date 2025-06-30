@@ -38,7 +38,7 @@ export default function CartPage() {
             <li>My Cart</li>
           </ol>
         </div>
-        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className=" grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="md:col-span-2">
             <CartList items={cartItems} selected={selectedItems} />
           </div>
