@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 E-Commerce Platform - Product & Cart Page
 
-## Getting Started
+A mid-level front-end developer task to rebuild essential parts of an e-commerce site using modern React/Next.js, based on a provided Figma design and REST API.
 
-First, run the development server:
+## 🔗 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 [Live Site](https://falcon-ecommerce-nine.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 GitHub Repository
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+🔗 [GitHub Repo](https://github.com/Sifat-Ikram/falcon-client)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
+## 📌 Project Features
 
-## Learn More
+### 🛍 Product Details Page (`/product/[slug]`)
+- Image gallery with main image and thumbnails
+- Product variations (color, size)
+- Quantity selector
+- Variation-wise "Add to Cart"
+- Description and Specifications toggle
+- Related product suggestions
+- Product category display (from API)
 
-To learn more about Next.js, take a look at the following resources:
+### 🛒 Cart Page (`/cart`)
+- View cart items with image, name, color, size, price
+- Update quantity
+- Remove items
+- Cart stored in `localStorage`
+- Order summary (subtotal, coupon, total)
+- Checkbox for Terms & Conditions
+- "Proceed to Checkout" button
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ Tech Stack
 
-## Deploy on Vercel
+| Technology       | Usage                           |
+|------------------|----------------------------------|
+| **Next.js**      | Framework & Routing              |
+| **React.js**     | Component-based UI               |
+| **Tailwind CSS** | UI styling                       |
+| **Redux Toolkit**| Cart and checkout management     |
+| **LocalStorage** | Persistent cart data             |
+| **REST API**     | Dynamic product data             |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+To run the project in the localhost, first the git should be cloned and then "npm install" should be typed in the terminal of the browser. Then it will run locally.
